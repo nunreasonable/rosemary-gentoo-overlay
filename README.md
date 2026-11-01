@@ -8,6 +8,12 @@ Gentoo's `cargo.eclass`, pins Git dependencies to the upstream `Cargo.lock`, and
 builds offline after Portage fetches the sources. The bundled, patched mimalloc
 is preserved. No Rust toolchain is downloaded by the ebuild itself.
 
+`games-util/ginrose` builds [Ginrose](https://github.com/nunreasonable/ginrose),
+a Roblox launcher, and Ginrose Studio, a Roblox Studio launcher, both built
+around Rosemary. The `player` USE flag (on by default) installs Ginrose and
+`studio` installs Ginrose Studio. They use `app-emulation/rosemary` when it is
+installed.
+
 ## Install
 
 Create `/etc/portage/repos.conf/rosemary.conf`:
@@ -25,6 +31,7 @@ Accept the package's testing keyword in
 
 ```text
 app-emulation/rosemary ~amd64
+games-util/ginrose ~amd64
 ```
 
 Then sync and install:
@@ -32,7 +39,12 @@ Then sync and install:
 ```sh
 emaint sync -r rosemary
 emerge --ask app-emulation/rosemary
+emerge --ask games-util/ginrose
 ```
+
+For Ginrose Studio, set `games-util/ginrose studio` (and `-player` to leave
+Ginrose out) in `/etc/portage/package.use/ginrose`. Ginrose needs Rust 1.88,
+GTK 4.14 and libadwaita 1.6 or later.
 
 The release requires Rust 1.99 or later and SDL 3.4 or later. Portage may ask for
 additional keywords for these dependencies on a stable system. `dev-lang/rust-bin`

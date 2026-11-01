@@ -19,3 +19,11 @@ for library in (
     ctypes.CDLL(library)
     print(f'Loaded {library}')
 PY
+
+FEATURES=test emerge --usepkg=n --oneshot =games-util/ginrose-0.3.1
+for name in ginrose ginrose-studio; do
+    "${name}" status
+    ! ldd "/usr/bin/${name}" | grep -q 'not found'
+done
+test -f /usr/share/applications/me.daeese.apps.ginrose.player.desktop
+test -f /usr/share/applications/me.daeese.apps.ginrose.studio.editor.desktop

@@ -20,7 +20,11 @@ EOF
 cp -a /overlay /var/db/repos/rosemary
 cat > /etc/portage/package.accept_keywords/rosemary <<'EOF'
 app-emulation/rosemary ~amd64
+games-util/ginrose ~amd64
 dev-lang/rust-bin ~amd64
+EOF
+cat > /etc/portage/package.use/ginrose <<'EOF'
+games-util/ginrose player studio
 EOF
 cat > /etc/portage/package.use/container-desktop <<'EOF'
 */* X wayland opengl
@@ -39,5 +43,7 @@ FEATURES="${FEATURES} -ipc-sandbox -network-sandbox -pid-sandbox"
 EOF
 emerge --getbinpkg --oneshot dev-lang/rust-bin dev-util/pkgcheck
 emerge --getbinpkg --oneshot --onlydeps =app-emulation/rosemary-0.4.1
+emerge --getbinpkg --oneshot --onlydeps =games-util/ginrose-0.3.1
 ebuild /var/db/repos/rosemary/app-emulation/rosemary/rosemary-0.4.1.ebuild manifest
+ebuild /var/db/repos/rosemary/games-util/ginrose/ginrose-0.3.1.ebuild manifest
 pkgcheck scan --exit error --repo /var/db/repos/rosemary
