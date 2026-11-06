@@ -43,7 +43,7 @@ FEATURES="${FEATURES} -ipc-sandbox -network-sandbox -pid-sandbox"
 EOF
 emerge --getbinpkg --oneshot dev-lang/rust-bin dev-util/pkgcheck
 emerge --getbinpkg --oneshot --onlydeps =app-emulation/rosemary-0.4.1
-emerge --getbinpkg --oneshot --onlydeps =games-util/ginrose-0.3.2
+emerge --getbinpkg --oneshot --onlydeps =games-util/ginrose-0.3.3
 ebuild /var/db/repos/rosemary/app-emulation/rosemary/rosemary-0.4.1.ebuild manifest
-ebuild /var/db/repos/rosemary/games-util/ginrose/ginrose-0.3.2.ebuild manifest
+ebuild /var/db/repos/rosemary/games-util/ginrose/ginrose-0.3.3.ebuild manifest
 pkgcheck scan --exit error --repo /var/db/repos/rosemary
