@@ -43,13 +43,13 @@ FEATURES="${FEATURES} -ipc-sandbox -network-sandbox -pid-sandbox"
 EOF
 emerge --getbinpkg --oneshot dev-lang/rust-bin dev-util/pkgcheck
 emerge --getbinpkg --oneshot --onlydeps =app-emulation/rosemary-0.4.1
-emerge --getbinpkg --oneshot --onlydeps =games-util/ginrose-0.3.5
+emerge --getbinpkg --oneshot --onlydeps =games-util/ginrose-0.3.6
 manifest_backup_dir="$(mktemp -d)"
 trap 'rm -rf -- "$manifest_backup_dir"' EXIT
 cp /var/db/repos/rosemary/app-emulation/rosemary/Manifest "$manifest_backup_dir/rosemary"
 cp /var/db/repos/rosemary/games-util/ginrose/Manifest "$manifest_backup_dir/ginrose"
 ebuild /var/db/repos/rosemary/app-emulation/rosemary/rosemary-0.4.1.ebuild manifest
-ebuild /var/db/repos/rosemary/games-util/ginrose/ginrose-0.3.5.ebuild manifest
+ebuild /var/db/repos/rosemary/games-util/ginrose/ginrose-0.3.6.ebuild manifest
 diff -u "$manifest_backup_dir/rosemary" /var/db/repos/rosemary/app-emulation/rosemary/Manifest
 diff -u "$manifest_backup_dir/ginrose" /var/db/repos/rosemary/games-util/ginrose/Manifest
 pkgcheck scan --exit error --repo /var/db/repos/rosemary
