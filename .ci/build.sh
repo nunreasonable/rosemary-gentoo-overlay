@@ -20,7 +20,7 @@ for library in (
     print(f'Loaded {library}')
 PY
 
-FEATURES=test emerge --usepkg=n --oneshot =games-util/ginrose-26.0.4.0
+FEATURES=test emerge --usepkg=n --oneshot =games-util/ginrose-26.0.5.0
 for name in ginrose ginrose-studio; do
     "${name}" status
     ! ldd "/usr/bin/${name}" | grep -q 'not found'
